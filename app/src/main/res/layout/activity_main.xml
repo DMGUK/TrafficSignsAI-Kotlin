@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- Header Section -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="#3F51B5"> <!-- A shade of blue for the header -->
+
+        <TextView
+            android:id="@+id/headerTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="East Asian Traffic Signs App"
+            android:textColor="#CCCCCC"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_centerInParent="true"/> <!-- Center the title -->
+    </RelativeLayout>
+
+    <!-- FrameLayout for stacking Camera Preview and Overlay View -->
+    <!-- This ensures the bounding boxes are drawn directly on top of the live camera feed. -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"> <!-- Takes 2/3 of the vertical space -->
+
+        <!-- Camera PreviewView: Displays the live camera feed. -->
+        <androidx.camera.view.PreviewView
+            android:id="@+id/previewView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitCenter" /> <!-- Ensures the camera feed fits within the view -->
+
+        <!-- OverlayView: Custom view to draw the detection bounding boxes and labels. -->
+        <!-- It's crucial that this view is placed after PreviewView to be on top. -->
+        <com.example.trafficsignapp.OverlayView
+            android:id="@+id/overlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </FrameLayout>
+
+    <!-- Info Panel Section -->
+    <!-- Displays information about the detected traffic signs. -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:background="#DBC39D"
+        android:padding="16dp"> <!-- Padding around the content -->
+
+        <!-- TextView to display the detected label (e.g., "Stop Sign: 95%") -->
+        <TextView
+            android:id="@+id/tvLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Label"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- TextView to display probability (currently not explicitly used for probability,
+             but can be extended for additional info) -->
+        <TextView
+            android:id="@+id/tvProbability"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="13sp"
+            android:layout_marginBottom="8dp"/>
+    </LinearLayout>
+</LinearLayout>
