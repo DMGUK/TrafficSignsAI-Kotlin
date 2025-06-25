@@ -1,4 +1,4 @@
-# TrafficSignsAI-Kotlin
+# EastAsiaTrafficSignsAI-Kotlin
 
 This repository contains the Android mobile application for real-time road sign detection using an ONNX-based YOLOv8 model. It complements the Python-based dataset generation and training pipeline from [TrafficSignsAI-Python](https://github.com/DMGUK/TrafficSignsAI-Python).
 
